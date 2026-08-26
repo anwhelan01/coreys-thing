@@ -1,0 +1,17 @@
+node_modules
+.output
+.vinxi
+.tanstack
+dist
+.env
+.env.local
+*.log
+/tmp
+screenshots
+artifacts
+.DS_Store
+.nitro
+.vercel
+.grok
+AGENTS.md
+AGENTS.project.md

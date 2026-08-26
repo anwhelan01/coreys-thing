@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Figtree", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --color-paper: #ebe6dc;
+  --color-bone: #f7f3eb;
+  --color-ink: #161412;
+  --color-ink-soft: #3a3530;
+  --color-mute: #6e675e;
+  --color-line: #cfc6b8;
+  --color-line-strong: #b7ad9d;
+  --color-forest: #2c4a3e;
+  --color-forest-fg: #f4efe6;
+  --color-moss: #4d6b5c;
+  --color-leak: #8c2f2b;
+  --color-stamp: #2c4a3e;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --shadow-border:
+    0px 0px 0px 1px rgba(22, 20, 18, 0.08),
+    0px 1px 2px -1px rgba(22, 20, 18, 0.06),
+    0px 8px 24px -16px rgba(22, 20, 18, 0.18);
+
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    min-height: 100dvh;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-display);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-forest) 22%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+.paper-grid {
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-ink) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-ink) 5%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hairline {
+  box-shadow: var(--shadow-border);
+}
+
+.stamp {
+  border: 1.5px solid var(--color-forest);
+  color: var(--color-forest);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  font-size: 0.65rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 2px;
+  transform: rotate(-2deg);
+}
+
+@keyframes corey-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-mute) 0%,
+    var(--color-ink) 40%,
+    var(--color-mute) 80%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: corey-shimmer 1.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-text {
+    animation: none;
+    color: var(--color-mute);
+    background: none;
+  }
+}
+
+@media print {
+  nav,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}
